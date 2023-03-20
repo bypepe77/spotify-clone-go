@@ -1,0 +1,19 @@
+[build]
+  bin = "cmd/myapp"
+  cmd = "go build -o cmd/myapp cmd/main.go"
+  args = ["-tags", "netgo", "-v"]
+  ignore_dirs = ["assets", "bin", "vendor"]
+  output = "cmd/myapp"
+
+[web]
+  address = ":8080"
+  allow-origin = "*"
+  delay = 1000ms
+  browse = false
+
+[watcher]
+  paths = ["."]
+
+[[watcher.extensions]]
+  name = ".go"
+  command = "go build -o cmd/myapp cmd/main.go"
