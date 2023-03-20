@@ -32,6 +32,7 @@ func (s *server) buildConnectionString() string {
 }
 
 func (s *server) awsConnectionCommand() (*s3.S3, error) {
+	// move this to aws folder inside bootstrap
 	sess, err := session.NewSession(&aws.Config{})
 	if err != nil {
 		return nil, err
