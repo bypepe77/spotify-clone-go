@@ -4,6 +4,9 @@ import (
 	"fmt"
 	"net/http"
 
+	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/session"
+	"github.com/aws/aws-sdk-go/service/s3"
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 )
@@ -28,6 +31,18 @@ func (s *server) buildConnectionString() string {
 	return fmt.Sprintf("%s:%s", s.config.Host, s.config.Port)
 }
 
+func (s *server) awsConnectioCommand() (*s3.S3, error) {
+	sess, err := session.NewSession(&aws.Config{
+		Region: aws.String("eu-west-3"),
+	})
+	if err != nil {
+		return nil, err
+	}
+	svc := s3.New(sess)
+
+	return svc, nil
+}
+
 func (s *server) Run() error {
 	s.engine.Use(cors.New(cors.Config{
 		AllowAllOrigins: false,
@@ -38,6 +53,23 @@ func (s *server) Run() error {
 		ExposeHeaders:    []string{"Authorization", "content-type"},
 		AllowHeaders:     []string{"Authorization", "content-type "},
 	}))
+
+	svc, err := s.awsConnectioCommand()
+	if err != nil {
+		return err
+	}
+
+	result, err := svc.ListBuckets(nil)
+	if err != nil {
+		return err
+	}
+
+	fmt.Println("Buckets:")
+	for _, b := range result.Buckets {
+		fmt.Printf("* %s created on %s\n",
+			aws.StringValue(b.Name), aws.TimeValue(b.CreationDate))
+	}
+
 	s.registerRoutes()
 	return s.engine.Run()
 }
