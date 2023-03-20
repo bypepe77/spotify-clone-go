@@ -32,9 +32,7 @@ func (s *server) buildConnectionString() string {
 }
 
 func (s *server) awsConnectioCommand() (*s3.S3, error) {
-	sess, err := session.NewSession(&aws.Config{
-		Region: aws.String("eu-west-3"),
-	})
+	sess, err := session.NewSession(&aws.Config{})
 	if err != nil {
 		return nil, err
 	}
@@ -53,23 +51,23 @@ func (s *server) Run() error {
 		ExposeHeaders:    []string{"Authorization", "content-type"},
 		AllowHeaders:     []string{"Authorization", "content-type "},
 	}))
+	/*
+		svc, err := s.awsConnectioCommand()
+		if err != nil {
+			return err
+		}
 
-	svc, err := s.awsConnectioCommand()
-	if err != nil {
-		return err
-	}
+		result, err := svc.ListBuckets(nil)
+		if err != nil {
+			return err
+		}
 
-	result, err := svc.ListBuckets(nil)
-	if err != nil {
-		return err
-	}
-
-	fmt.Println("Buckets:")
-	for _, b := range result.Buckets {
-		fmt.Printf("* %s created on %s\n",
-			aws.StringValue(b.Name), aws.TimeValue(b.CreationDate))
-	}
-
+		fmt.Println("Buckets:")
+		for _, b := range result.Buckets {
+			fmt.Printf("* %s created on %s\n",
+				aws.StringValue(b.Name), aws.TimeValue(b.CreationDate))
+		}
+	*/
 	s.registerRoutes()
 	return s.engine.Run()
 }
