@@ -31,7 +31,7 @@ func (s *server) buildConnectionString() string {
 	return fmt.Sprintf("%s:%s", s.config.Host, s.config.Port)
 }
 
-func (s *server) awsConnectioCommand() (*s3.S3, error) {
+func (s *server) awsConnectionCommand() (*s3.S3, error) {
 	sess, err := session.NewSession(&aws.Config{})
 	if err != nil {
 		return nil, err
