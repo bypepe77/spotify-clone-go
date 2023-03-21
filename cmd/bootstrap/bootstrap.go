@@ -13,12 +13,14 @@ const enviroment = "dev"
 const projectDirName = "spotify-clone-go"
 
 func Run() error {
-	if enviroment != "dev" {
+	if enviroment != "prd" {
 		loadEnv()
 	}
 
+	db := bootstrap.DatabaseConnectionEnt()
+
 	config := bootstrap.NewConfig(os.Getenv("APP_NAME"), os.Getenv("PORT"))
-	server := bootstrap.NewServer(config)
+	server := bootstrap.NewServer(config, db)
 
 	return server.Run()
 }

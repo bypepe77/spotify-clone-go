@@ -7,6 +7,7 @@ import (
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/session"
 	"github.com/aws/aws-sdk-go/service/s3"
+	"github.com/bypepe77/spotify-clone-go/ent"
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 )
@@ -14,12 +15,14 @@ import (
 type server struct {
 	config *Config
 	engine *gin.Engine
+	db     *ent.Client
 }
 
-func NewServer(config *Config) *server {
+func NewServer(config *Config, db *ent.Client) *server {
 	return &server{
 		config: config,
 		engine: gin.New(),
+		db:     db,
 	}
 }
 
