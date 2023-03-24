@@ -8,7 +8,7 @@ import (
 
 type AuthServiceInterface interface {
 	Login(username string, password string) (*User, error)
-	Register(username string, password string) (*User, error)
+	Register(username, password, email string) (*User, error)
 }
 
 type AuthService struct {
@@ -46,8 +46,8 @@ func (s *AuthService) Login(username string, password string) (*User, error) {
 	return toUserModel(user.ID, user.Username, token), nil
 }
 
-func (s *AuthService) Register(username string, password string) (*User, error) {
-	if username == "" || password == "" {
+func (s *AuthService) Register(username, password, email string) (*User, error) {
+	if username == "" || password == "" || email == "" {
 		return nil, errors.New("username or password is empty")
 	}
 
@@ -60,10 +60,15 @@ func (s *AuthService) Register(username string, password string) (*User, error) 
 		return nil, errors.New("username already exists")
 	}
 
+	userCreated, err := s.repository.CreateUser(username, email, password)
+	if err != nil {
+		return nil, err
+	}
+
 	token, err := s.jwtService.GenerateToken(user.ID)
 	if err != nil {
 		return nil, err
 	}
 
-	return toUserModel(user.ID, user.Username, token), nil
+	return toUserModel(userCreated.ID, userCreated.Username, token), nil
 }
