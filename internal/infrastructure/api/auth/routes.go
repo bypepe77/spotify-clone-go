@@ -21,4 +21,5 @@ func NewAuthRouter(service auth.AuthServiceInterface, r gin.RouterGroup) *AuthRo
 
 func (r *AuthRouter) RegisterRoutes() {
 	r.routeGroup.POST("/login", r.api.Login)
+	r.routeGroup.POST("/register", r.api.Register)
 }

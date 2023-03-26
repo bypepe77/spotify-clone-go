@@ -10,6 +10,7 @@ import (
 
 type AuthApiInterface interface {
 	Login(c *gin.Context)
+	Register(c *gin.Context)
 }
 
 type AuthApi struct {
@@ -36,6 +37,28 @@ func (a *AuthApi) Login(c *gin.Context) {
 	}
 
 	user, err := a.service.Login(payload.Username, payload.Password)
+	if err != nil {
+		responses.Error(http.StatusBadRequest, c, err.Error())
+		return
+	}
+
+	responses.Success(http.StatusOK, c, toUserResponse(user))
+}
+
+func (a *AuthApi) Register(c *gin.Context) {
+	var payload *UserInput
+	err := c.BindJSON(&payload)
+	if err != nil {
+		responses.Error(http.StatusBadRequest, c, "Invalid payload")
+		return
+	}
+
+	if payload.Username == "" || payload.Password == "" || payload.Email == "" {
+		responses.Error(http.StatusBadRequest, c, "username , password, email is empty")
+		return
+	}
+
+	user, err := a.service.Register(payload.Username, payload.Email, payload.Password)
 	if err != nil {
 		responses.Error(http.StatusBadRequest, c, err.Error())
 		return
