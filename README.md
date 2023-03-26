@@ -3,7 +3,7 @@
     <span><strong>Spotify clone </strong>api for go it's a clone of spotify only for learning purpose.</span><br />
 </div>
 
-## How to use it:
+## Prerequisites to execute:
 
 Clone or fork this repository. 
 
