@@ -39,10 +39,10 @@ services:
     command: --default-authentication-plugin=mysql_native_password
     restart: always
     environment:
-      MYSQL_DATABASE: music
-      MYSQL_USER: mario
-      MYSQL_PASSWORD: 1234
-      MYSQL_ROOT_PASSWORD: 1234
+      MYSQL_DATABASE: exampleDatabase
+      MYSQL_USER: exampleUser
+      MYSQL_PASSWORD: examplePassword
+      MYSQL_ROOT_PASSWORD: exampleRootPassword
     ports:
       - "3306:3306"
     volumes:
