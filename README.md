@@ -28,6 +28,28 @@ You can run a local databse running this command:
  docker-compose up -d 
 ```
 
+In case you want to execute a local database using docker modify **docker-compose.yml** with your data. 
+
+```
+ version: '3'
+
+services:
+  db:
+    image: mysql
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    environment:
+      MYSQL_DATABASE: music
+      MYSQL_USER: mario
+      MYSQL_PASSWORD: 1234
+      MYSQL_ROOT_PASSWORD: 1234
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./mysql_data:/var/lib/mysql
+```
+
+
 ## How to run the app:
 To run this app you have to execute the following command: 
 
