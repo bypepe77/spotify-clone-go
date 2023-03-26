@@ -1,0 +1,23 @@
+mode: set
+github.com/bypepe77/spotify-clone-go/internal/domain/auth/mapping.go:3.56,9.2 1 0
+github.com/bypepe77/spotify-clone-go/internal/domain/auth/service.go:19.69,24.2 1 0
+github.com/bypepe77/spotify-clone-go/internal/domain/auth/service.go:26.78,27.38 1 0
+github.com/bypepe77/spotify-clone-go/internal/domain/auth/service.go:31.2,32.16 2 0
+github.com/bypepe77/spotify-clone-go/internal/domain/auth/service.go:37.2,37.60 1 0
+github.com/bypepe77/spotify-clone-go/internal/domain/auth/service.go:41.2,42.16 2 0
+github.com/bypepe77/spotify-clone-go/internal/domain/auth/service.go:46.2,46.56 1 0
+github.com/bypepe77/spotify-clone-go/internal/domain/auth/service.go:27.38,29.3 1 0
+github.com/bypepe77/spotify-clone-go/internal/domain/auth/service.go:32.16,34.3 1 0
+github.com/bypepe77/spotify-clone-go/internal/domain/auth/service.go:37.60,39.3 1 0
+github.com/bypepe77/spotify-clone-go/internal/domain/auth/service.go:42.16,44.3 1 0
+github.com/bypepe77/spotify-clone-go/internal/domain/auth/service.go:49.81,50.53 1 0
+github.com/bypepe77/spotify-clone-go/internal/domain/auth/service.go:54.2,55.16 2 0
+github.com/bypepe77/spotify-clone-go/internal/domain/auth/service.go:59.2,59.17 1 0
+github.com/bypepe77/spotify-clone-go/internal/domain/auth/service.go:63.2,64.16 2 0
+github.com/bypepe77/spotify-clone-go/internal/domain/auth/service.go:68.2,69.16 2 0
+github.com/bypepe77/spotify-clone-go/internal/domain/auth/service.go:73.2,73.70 1 0
+github.com/bypepe77/spotify-clone-go/internal/domain/auth/service.go:50.53,52.3 1 0
+github.com/bypepe77/spotify-clone-go/internal/domain/auth/service.go:55.16,57.3 1 0
+github.com/bypepe77/spotify-clone-go/internal/domain/auth/service.go:59.17,61.3 1 0
+github.com/bypepe77/spotify-clone-go/internal/domain/auth/service.go:64.16,66.3 1 0
+github.com/bypepe77/spotify-clone-go/internal/domain/auth/service.go:69.16,71.3 1 0
