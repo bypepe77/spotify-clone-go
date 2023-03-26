@@ -3,7 +3,6 @@ package middlewares
 import (
 	"encoding/json"
 	"errors"
-	"fmt"
 	"os"
 	"time"
 
@@ -62,7 +61,7 @@ func (service *jwtServices) GenerateToken(userID int) (string, error) {
 func (service *jwtServices) ValidateToken(encodedToken string) (*jwt.Token, error) {
 	return jwt.Parse(encodedToken, func(token *jwt.Token) (interface{}, error) {
 		if _, isvalid := token.Method.(*jwt.SigningMethodHMAC); !isvalid {
-			return nil, fmt.Errorf("invalid token", token.Header["alg"])
+			return nil, errors.New("invalid token")
 		}
 		return []byte(service.secretKey), nil
 	})
