@@ -8,6 +8,8 @@ import (
 	"github.com/aws/aws-sdk-go/aws/session"
 	"github.com/aws/aws-sdk-go/service/s3"
 	"github.com/bypepe77/spotify-clone-go/ent"
+	"github.com/bypepe77/spotify-clone-go/internal/domain/auth"
+	authApi "github.com/bypepe77/spotify-clone-go/internal/infrastructure/api/auth"
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 )
@@ -80,6 +82,11 @@ func (s *server) registerRoutes() {
 	// Initialize Basic routes
 	s.engine.GET("/", healthCheck)
 
+	// Initialize Auth routes
+	authRepository := authApi.NewAuthRepository(s.db)
+	authService := auth.NewAuthService(authRepository)
+	authRouter := authApi.NewAuthRouter(authService, *s.engine.Group("/auth"))
+	authRouter.RegisterRoutes()
 }
 
 func healthCheck(c *gin.Context) {
