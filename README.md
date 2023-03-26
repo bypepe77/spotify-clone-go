@@ -28,4 +28,11 @@ You can run a local databse running this command:
  docker-compose up -d 
 ```
 
-Now you can run go run cmd/main.go and you are ready to go :) 
+## How to run the app:
+To run this app you have to execute the following command: 
+
+```bash
+ go run cmd/main.go
+```
+
+
