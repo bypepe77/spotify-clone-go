@@ -22,12 +22,6 @@ APP_NAME = "your_app_name
 HOST = "Were your app will be running, example: localhost"
 ```
 
-You can run a local databse running this command: 
-
-```bash
- docker-compose up -d 
-```
-
 In case you want to execute a local database using docker modify **docker-compose.yml** with your data. 
 
 ```
@@ -47,6 +41,12 @@ services:
       - "3306:3306"
     volumes:
       - ./mysql_data:/var/lib/mysql
+```
+
+Now to run your local database using docker use the following command: 
+
+```bash
+ docker-compose up -d 
 ```
 
 
