@@ -43,7 +43,7 @@ func (s *AuthService) Login(username string, password string) (*User, error) {
 		return nil, err
 	}
 
-	return toUserModel(user.ID, user.Username, token), nil
+	return NewUser(user.ID, user.Username, token), nil
 }
 
 func (s *AuthService) Register(username, password, email string) (*User, error) {
@@ -70,5 +70,5 @@ func (s *AuthService) Register(username, password, email string) (*User, error) 
 		return nil, err
 	}
 
-	return toUserModel(userCreated.ID, userCreated.Username, token), nil
+	return NewUser(userCreated.ID, userCreated.Username, token), nil
 }
