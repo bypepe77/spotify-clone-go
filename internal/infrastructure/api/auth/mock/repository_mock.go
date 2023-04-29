@@ -9,6 +9,10 @@ type AuthRepositoryMock struct {
 	mock.Mock
 }
 
+func NewAuthRepositoryMock() *AuthRepositoryMock {
+	return &AuthRepositoryMock{}
+}
+
 func (m *AuthRepositoryMock) GetUserByUsername(username string) (*ent.User, error) {
 	args := m.Called(username)
 	return args.Get(0).(*ent.User), args.Error(1)
