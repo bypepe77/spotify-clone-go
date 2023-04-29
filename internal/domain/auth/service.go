@@ -56,7 +56,7 @@ func (s *AuthService) Register(username, password, email string) (*User, error) 
 		return nil, err
 	}
 
-	if user != nil {
+	if user.Username == username {
 		return nil, errors.New("username already exists")
 	}
 
