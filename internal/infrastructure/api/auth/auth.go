@@ -59,7 +59,7 @@ func (a *AuthApi) Register(c *gin.Context) {
 		return
 	}
 
-	user, err := a.service.Register(payload.Username, payload.Email, payload.Password)
+	user, err := a.service.Register(payload.Username, payload.Password, payload.Email)
 	if err != nil {
 		fmt.Println("err", err)
 		responses.Error(http.StatusBadRequest, c, err.Error())

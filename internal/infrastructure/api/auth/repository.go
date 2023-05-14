@@ -58,7 +58,7 @@ func (r *authRepository) GetUserById(id int) (*ent.User, error) {
 }
 
 func (r *authRepository) CreateUser(username, email, password string) (*ent.User, error) {
-	user, err := r.db.User.Create().SetUsername(username).SetEmail(email).SetPassword(password).Save(context.Background())
+	user, err := r.db.User.Create().SetUsername(username).SetPassword(password).SetEmail(email).Save(context.Background())
 	if err != nil {
 		return nil, err
 	}
