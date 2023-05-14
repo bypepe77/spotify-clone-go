@@ -1,6 +1,7 @@
 package auth
 
 import (
+	"fmt"
 	"net/http"
 
 	"github.com/bypepe77/spotify-clone-go/internal/domain/auth"
@@ -60,6 +61,7 @@ func (a *AuthApi) Register(c *gin.Context) {
 
 	user, err := a.service.Register(payload.Username, payload.Email, payload.Password)
 	if err != nil {
+		fmt.Println("err", err)
 		responses.Error(http.StatusBadRequest, c, err.Error())
 		return
 	}

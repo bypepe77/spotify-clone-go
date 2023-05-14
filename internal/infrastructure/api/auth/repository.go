@@ -16,6 +16,7 @@ type AuthRepositoryInterface interface {
 	GetUserByEmail(email string) (*ent.User, error)
 	GetUserById(id int) (*ent.User, error)
 	CreateUser(username, email, password string) (*ent.User, error)
+	GetIfUserExists(username string) (bool, error)
 }
 
 func NewAuthRepository(db *ent.Client) AuthRepositoryInterface {
@@ -30,6 +31,14 @@ func (r *authRepository) GetUserByUsername(username string) (*ent.User, error) {
 		return nil, err
 	}
 	return user, nil
+}
+
+func (r *authRepository) GetIfUserExists(username string) (bool, error) {
+	exist, err := r.db.User.Query().Where(user.Username(username)).Exist(context.Background())
+	if err != nil {
+		return true, err
+	}
+	return exist, nil
 }
 
 func (r *authRepository) GetUserByEmail(email string) (*ent.User, error) {

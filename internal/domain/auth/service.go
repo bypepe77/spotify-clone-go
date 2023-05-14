@@ -51,12 +51,12 @@ func (s *AuthService) Register(username, password, email string) (*User, error) 
 		return nil, errors.New("username or password is empty")
 	}
 
-	user, err := s.repository.GetUserByUsername(username)
+	userExist, err := s.repository.GetIfUserExists(username)
 	if err != nil {
 		return nil, err
 	}
 
-	if user.Username == username {
+	if userExist {
 		return nil, errors.New("username already exists")
 	}
 
@@ -65,7 +65,7 @@ func (s *AuthService) Register(username, password, email string) (*User, error) 
 		return nil, err
 	}
 
-	token, err := s.jwtService.GenerateToken(user.ID)
+	token, err := s.jwtService.GenerateToken(userCreated.ID)
 	if err != nil {
 		return nil, err
 	}

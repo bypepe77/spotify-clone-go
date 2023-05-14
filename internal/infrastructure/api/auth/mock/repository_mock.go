@@ -18,6 +18,11 @@ func (m *AuthRepositoryMock) GetUserByUsername(username string) (*ent.User, erro
 	return args.Get(0).(*ent.User), args.Error(1)
 }
 
+func (m *AuthRepositoryMock) GetIfUserExists(username string) (bool, error) {
+	args := m.Called(username)
+	return args.Bool(0), args.Error(1)
+}
+
 func (m *AuthRepositoryMock) GetUserByEmail(email string) (*ent.User, error) {
 	args := m.Called(email)
 	return args.Get(0).(*ent.User), args.Error(1)
