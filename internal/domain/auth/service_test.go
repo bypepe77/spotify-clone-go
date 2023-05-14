@@ -79,7 +79,7 @@ func Test_Register_Ok(t *testing.T) {
 	authRepo := mock.NewAuthRepositoryMock()
 	authService := NewAuthService(authRepo)
 
-	authRepo.On("GetUserByUsername", "username").Return(&ent.User{}, nil).Once()
+	authRepo.On("GetIfUserExists", "username").Return(false, nil).Once()
 	userCreated := &ent.User{
 		ID:       1,
 		Username: "username",
@@ -97,9 +97,7 @@ func Test_Register_Fail_Username_Exist(t *testing.T) {
 	authRepo := mock.NewAuthRepositoryMock()
 	authService := NewAuthService(authRepo)
 
-	authRepo.On("GetUserByUsername", "username").Return(&ent.User{
-		Username: "username",
-	}, nil).Once()
+	authRepo.On("GetIfUserExists", "username").Return(true, nil).Once()
 
 	userCreated := &ent.User{
 		ID:       1,
