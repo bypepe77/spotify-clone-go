@@ -9,7 +9,9 @@ import (
 	"github.com/aws/aws-sdk-go/service/s3"
 	"github.com/bypepe77/spotify-clone-go/ent"
 	"github.com/bypepe77/spotify-clone-go/internal/domain/auth"
+	"github.com/bypepe77/spotify-clone-go/internal/domain/playlist"
 	authApi "github.com/bypepe77/spotify-clone-go/internal/infrastructure/api/auth"
+	playlistApi "github.com/bypepe77/spotify-clone-go/internal/infrastructure/api/playlist"
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 )
@@ -87,6 +89,13 @@ func (s *server) registerRoutes() {
 	authService := auth.NewAuthService(authRepository)
 	authRouter := authApi.NewAuthRouter(authService, *s.engine.Group("/auth"))
 	authRouter.RegisterRoutes()
+
+	// Initialize Playlist routes
+	playlistRepository := playlistApi.NewPlaylistRepository(s.db)
+	playlistService := playlist.NewPlaylistService(playlistRepository)
+	playlistRouter := playlistApi.NewPlaylistRouter(*s.engine.Group("/playlist"), playlistService)
+	playlistRouter.RegisterRoutes()
+
 }
 
 func healthCheck(c *gin.Context) {

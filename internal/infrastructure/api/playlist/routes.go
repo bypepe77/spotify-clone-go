@@ -1,6 +1,8 @@
 package playlist
 
 import (
+	"net/http"
+
 	"github.com/bypepe77/spotify-clone-go/internal/domain/playlist"
 	"github.com/gin-gonic/gin"
 )
@@ -18,5 +20,12 @@ func NewPlaylistRouter(r gin.RouterGroup, service playlist.PlayListServiceInterf
 }
 
 func (r *PlaylistRouter) RegisterRoutes() {
-	panic("implement me")
+	r.routeGroup.GET("/playlists", getFakePlaylist)
+}
+
+func getFakePlaylist(c *gin.Context) {
+	c.JSON(http.StatusOK, gin.H{
+		"message": " Implement me!",
+	},
+	)
 }
