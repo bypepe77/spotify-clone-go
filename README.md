@@ -8,8 +8,6 @@
 Clone or fork this repository. 
 
 Create a .env with this data: 
-
-
 ```
 PORT="8080"
 GIN_MODE="debug"
