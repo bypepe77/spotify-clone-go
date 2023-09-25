@@ -55,3 +55,7 @@ To run this app you have to execute the following command:
 ```
 
 
+## Contributions:
+[![Stargazers repo roster for @USERNAME/REPO_NAME](https://reporoster.com/stars/bypepe77/spotify-clone-go)](https://github.com/bypepe77/spotify-clone-go/stargazers)
+[![Forkers repo roster for @USERNAME/REPO_NAME](https://reporoster.com/forks/bypepe77/spotify-clone-go)](https://github.com/bypepe77/spotify-clone-go/network/members)
+
